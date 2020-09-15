@@ -25,6 +25,5 @@ a = json.loads(resp)
 
 st.write(a)
 
-a['coucou']
+a['prediction']
 
-'coucou'
