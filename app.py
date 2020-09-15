@@ -1,3 +1,9 @@
+
+import json
+
+# to launch front server:
+# streamlit run app.py
+
 import streamlit as st
 
 company = st.text_input('Company name', 'Google')
@@ -15,4 +21,10 @@ response = requests.get(url, params)
 
 resp = response.content
 
-st.write(resp, unsafe_allow_html=True)
+a = json.loads(resp)
+
+st.write(a)
+
+a['coucou']
+
+'coucou'
