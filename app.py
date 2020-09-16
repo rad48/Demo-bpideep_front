@@ -23,7 +23,5 @@ resp = response.content
 
 a = json.loads(resp)
 
-st.write(a)
-
-a['prediction']
+a['predictions']
 
