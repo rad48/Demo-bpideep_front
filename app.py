@@ -25,5 +25,5 @@ try:
     a = json.loads(resp)
     a['predictions']
 except:
-    resp.decode()
+    st.write(resp.decode())
 
