@@ -21,7 +21,9 @@ response = requests.get(url, params)
 
 resp = response.content
 
-a = json.loads(resp)
-
-a['predictions']
+try:
+    a = json.loads(resp)
+    a['predictions']
+except:
+    resp.decode()
 
