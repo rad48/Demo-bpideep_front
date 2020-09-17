@@ -6,7 +6,6 @@ import streamlit as st
 # to launch front server:
 # streamlit run app.py
 
-<<<<<<< HEAD
 import streamlit as st
 
 
