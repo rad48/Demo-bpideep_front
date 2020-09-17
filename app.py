@@ -1,29 +1,24 @@
 
 import json
+import requests
+import streamlit as st
 
 # to launch front server:
 # streamlit run app.py
 
-import streamlit as st
+company = st.text_input('Company name')
 
-company = st.text_input('Company name', 'Google')
+if company:
+    url = 'https://deeptechpredict.herokuapp.com/predict'
 
-import requests
+    params = {
+        'name' : company
+    }
 
-# url = 'https://myapp.herokuapp.com'
-url = 'https://deeptechpredict.herokuapp.com/predict'
+    response = requests.get(url, params)
 
-params = {
-    'name' : company
-}
+    resp = response.content
 
-response = requests.get(url, params)
-
-resp = response.content
-
-try:
     a = json.loads(resp)
-    a['predictions']
-except:
-    st.write(resp.decode())
+    st.write(a['predictions'])
 
