@@ -5,14 +5,6 @@ import streamlit as st
 
 # to launch front server:
 # streamlit run app.py
-
-import streamlit as st
-
-
-company = st.text_input('Company name', 'Google')
-
-import requests
-
 #imports for dataviz
 import os
 import glob
@@ -20,7 +12,6 @@ import time
 import multiprocessing
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
 from gauge import *
 
 #### INITIAL CODE
@@ -43,22 +34,18 @@ from gauge import *
 
 
 ### NEW CODE
-company = st.text_input('Company name')
+company = st.text_input("Enter the name of a company")
 
 if company:
     url = 'https://deeptechpredict.herokuapp.com/predict'
-
     params = {
         'name' : company
     }
-
     response = requests.get(url, params)
-
     resp = response.content
 
     a = json.loads(resp)
-    st.write(a['predictions'])
-
-predict_time = 0.75
-
-st.plotly_chart(fig_time(predict_time))
+    st.write(a['prediction'])
+    y_lab = float(a['lab_predict'])
+    y_time = float(a['time_predict'])
+    st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
