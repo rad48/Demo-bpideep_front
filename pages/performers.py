@@ -50,8 +50,8 @@ def write():
             else:
                 return ['background-color: white']*3
 
-        df = pd.DataFrame.from_dict(dict_df).style.apply(highlight_1, axis = 1 )
-        df = df.hide_index()
+        df = pd.DataFrame.from_dict(dict_df)
+        df = df.style.apply(highlight_1, axis = 1 )
 
         st.table(df)
 
