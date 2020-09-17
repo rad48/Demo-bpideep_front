@@ -1,64 +1,38 @@
-
-import json
-import requests
 import streamlit as st
-import pandas as pd
 
-# to launch front server:
-# streamlit run app.py
+import awesome_streamlit as ast
+import pages.search
+import pages.performers
+import pages.home
 
-# if st.button('Search company'):
-add_selectbox = st.sidebar.selectbox(
-    'Choose',
-    ('Predict', 'Search')
-)
+ast.core.services.other.set_logging_format()
 
-if add_selectbox == 'Predict':
-    company = st.text_input('Company name')
-
-    if company:
-        # url = 'https://deeptechpredict.herokuapp.com/predict'
-        url = 'http://127.0.0.1:8080/predict'
-
-        params = {
-            'name' : company
-        }
-
-        response = requests.get(url, params)
-
-        resp = response.content
-
-        a = json.loads(resp)
-
-        st.write(f"Deeptech prediction : {a['prediction']}")
-        st.write(f"Predict probability : {a['prediction_proba']}")
-        st.write(a['time_predict'])
-        st.write(a['lab_predict'])
-        st.image(a['image'], width = 100)
+PAGES = {
+    "Home": pages.home,
+    "Search company": pages.search,
+    "Top performers": pages.performers,
+}
 
 
-elif add_selectbox == 'Search':
-    year = st.text_input('Year')
-    month = st.text_input('Month')
+def main():
+    """Main function of the App"""
+    st.sidebar.title("Navigation")
+    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
-    if year and month:
-        url = 'https://deeptechpredict.herokuapp.com/search'
-        # url = 'http://127.0.0.1:8080/search'
-        params = {
-            'year' : year,
-            'month': month
-        }
+    page = PAGES[selection]
 
-        response = requests.get(url, params)
+    with st.spinner(f"Loading {selection} ..."):
+        ast.shared.components.write_page(page)
 
-        resp = response.content
-
-        a = json.loads(resp)
-
-        df = pd.DataFrame.from_dict(a)
-        st.dataframe(df)
+    st.sidebar.title("About")
+    st.sidebar.info(
+        """
+        This app was developped by Antoine Planchon, Nicolas Rousselet, Nicolas Tournaud and Alexandre Huet.\n
+        This two-weeks project concludes a Data Science Bootcamp at Le Wagon.\n
+        Special thanks to BPI France for the ressources and great advices, and to the wonderful team of Le Wagon.
+    """
+    )
 
 
-
-
-
+if __name__ == "__main__":
+    main()
