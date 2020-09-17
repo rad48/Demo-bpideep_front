@@ -1,9 +1,12 @@
 
 import json
+import requests
+import streamlit as st
 
 # to launch front server:
 # streamlit run app.py
 
+<<<<<<< HEAD
 import streamlit as st
 
 
@@ -38,8 +41,25 @@ from gauge import *
 
 # a['predictions']
 
-predict_time = 0.75
+
 
 ### NEW CODE
+company = st.text_input('Company name')
+
+if company:
+    url = 'https://deeptechpredict.herokuapp.com/predict'
+
+    params = {
+        'name' : company
+    }
+
+    response = requests.get(url, params)
+
+    resp = response.content
+
+    a = json.loads(resp)
+    st.write(a['predictions'])
+
+predict_time = 0.75
 
 st.plotly_chart(fig_time(predict_time))

@@ -1,23 +1,33 @@
-import plotly.graph_objects as go
-## TIME GAUGE
-MEAN_NON_DT = 0.52
-MEAN_DT = 0.62
+import chart_studio.plotly as py
+import plotly.figure_factory as ff
+import pandas as pd
 
-def colorized_time(x):
+
+
+## LABORATORY AND TIME MEAN VALUES FROM PREDICT MODELS
+MEAN_NON_DT_LAB = 0.52
+MEAN_DT_LAB = 0.62
+MEAN_NON_DT_TIME = 0.52
+MEAN_DT_TIME = 0.62
+
+
+
+
+
+
+def colorized_time(y_lab, y_time):
     if x < MEAN_NON_DT: return 'red'
     elif x < MEAN_DT: return 'orange'
     else: return 'green'
 
-def fig_time(x):
-    return go.Figure(go.Indicator(
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                value = x,
-                mode = "gauge+number+delta",
-                title = {'text': "Time to market"},
-                delta = {'reference': MEAN_DT},
-                gauge = {'axis': {'range': [None, 1]},
-                         'bar': {'color': colorized_time(x)},
-                         'steps' : [
-                             {'range': [0, MEAN_NON_DT], 'color': "lightgray"},
-                             {'range': [MEAN_NON_DT, MEAN_DT], 'color': "gray"}],
-                         }))
+# Get json ready
+def get_fig(x)
+    json_input = [
+          {"title":"Link to labo","subtitle": "Lorem ipsum", "ranges":[MEAN_NON_DT_LAB, MEAN_DT_LAB],"measures":[MEAN_NON_DT_LAB,MEAN_DT_LAB],"markers":[y_lab]},
+          {"title":"Time to market","subtitle": "Lorem ipsum","ranges":[MEAN_NON_DT_TIME, MEAN_DT_TIME],"measures":[MEAN_NON_DT_TIME, MEAN_DT_TIME],"markers":[y_time]}
+        ]
+    data = pd.DataFrame(json_input)
+    return    ff.create_bullet(
+        data, markers='markers', measures='measures',
+        ranges='ranges', subtitles='subtitle', titles='title',
+    )
