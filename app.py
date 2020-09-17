@@ -17,7 +17,8 @@ if add_selectbox == 'Predict':
     company = st.text_input('Company name')
 
     if company:
-        url = 'https://deeptechpredict.herokuapp.com/predict'
+        # url = 'https://deeptechpredict.herokuapp.com/predict'
+        url = 'http://127.0.0.1:8080/predict'
 
         params = {
             'name' : company
@@ -28,15 +29,21 @@ if add_selectbox == 'Predict':
         resp = response.content
 
         a = json.loads(resp)
-        st.write(a['predictions'])
+
+        st.write(f"Deeptech prediction : {a['prediction']}")
+        st.write(f"Predict probability : {a['prediction_proba']}")
+        st.write(a['time_predict'])
+        st.write(a['lab_predict'])
+        st.image(a['image'], width = 100)
+
 
 elif add_selectbox == 'Search':
     year = st.text_input('Year')
     month = st.text_input('Month')
 
     if year and month:
-        # url = 'https://deeptechpredict.herokuapp.com/search'
-        url = 'http://127.0.0.1:8080/search'
+        url = 'https://deeptechpredict.herokuapp.com/search'
+        # url = 'http://127.0.0.1:8080/search'
         params = {
             'year' : year,
             'month': month
