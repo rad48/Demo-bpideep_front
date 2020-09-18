@@ -30,6 +30,9 @@ def write():
     st.sidebar.title("Input company's name :")
     company = st.sidebar.text_input('Company','Devialet')
 
+    if company.capitalize() == 'Le wagon':
+        st.image =
+
     if company:
         # url = 'https://deeptechpredict.herokuapp.com/predict'
 

@@ -10,7 +10,7 @@ ast.core.services.other.set_logging_format()
 PAGES = {
     "Home": pages.home,
     "Search company": pages.search,
-    "Top performers": pages.performers,
+    "Monthly report": pages.performers,
 }
 
 
