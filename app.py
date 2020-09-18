@@ -1,11 +1,11 @@
 import streamlit as st
 
-import awesome_streamlit as ast
+# import awesome_streamlit as ast
 import pages.search
 import pages.performers
 import pages.home
 
-ast.core.services.other.set_logging_format()
+# ast.core.services.other.set_logging_format()
 
 PAGES = {
     "Home": pages.home,

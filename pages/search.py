@@ -2,7 +2,7 @@ import json
 import requests
 import streamlit as st
 import pandas as pd
-import awesome_streamlit as ast
+# import awesome_streamlit as ast
 from gauge import *
 
 def create_info_table(selected_data_info):
