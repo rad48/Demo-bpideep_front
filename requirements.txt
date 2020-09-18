@@ -5,3 +5,4 @@ json
 requests
 pandas
 awesome_streamlit
+jinja2
