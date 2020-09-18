@@ -26,14 +26,17 @@ def create_info_table(selected_data_info):
         st.table(info_table)
 
 
+
 def write():
     st.sidebar.title("Input company's name :")
-    company = st.sidebar.text_input('Company','Devialet')
+    company = st.sidebar.text_input('Company')
 
-    if company:
-        # url = 'https://deeptechpredict.herokuapp.com/predict'
+    if company == 'Le wagon':
+        st.title('Le wagon')
+        st.image('https://s3-eu-west-1.amazonaws.com/dealroom-images/89/MTAwOjEwMDpjb21wYW55QHMzLWV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2RlYWxyb29tLWltYWdlcy8yMDIwLzAzLzAzLzQ2NDgwOTNhNmYxN2Y3OWU3YzRlZDg0ZWVjOWI1YmY4.png', width = 50)
+        st.image('https://i.imgflip.com/4fexmq.jpg', width = 900)
 
-
+    elif company:
         a = get_data(company)
 
         #print company name and logo
@@ -70,8 +73,8 @@ def write():
 
 @st.cache
 def get_data(company):
-        url = 'http://127.0.0.1:8080/predict'
-        # url = 'https://deeptechpredict.herokuapp.com/search'
+        # url = 'http://127.0.0.1:8080/predict'
+        url = 'https://deeptechpredict.herokuapp.com/predict'
 
         params = {
             'name' : company
