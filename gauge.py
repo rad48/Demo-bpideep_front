@@ -32,17 +32,6 @@ def colorized_time(x):
     else: return 'rgba(154,205,50,1)'
 
 
-
-
-# def colorized_time(y_lab, y_time):
-#     if y_lab < MEAN_NON_DT: return 'rgba(220,20,60,1)'
-#     elif x < MEAN_DT: return 'rgba(255,127,80,1)'
-#     else: return 'rgba(154,205,50,1)'
-
-# measure_colors=['rgba(220,20,60,0.1)', 'rgb(154,205,50)']
-# range_colors=['rgb(241, 241, 241)', 'rgb(241, 241, 241)']
-
-
 # # Get json ready
 # def get_fig(y_lab, y_time):
 #     json_input = [

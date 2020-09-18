@@ -43,31 +43,23 @@ def write():
         # st.title(company.capitalize())
         st.title(company.capitalize())
         st.image(a['image'], width = 100)
-        st.write(f'The company found is located in {company.}')
-
-        #print a table with description and tags
-
-
-        # st.write(a)
-
         if int(a['prediction'])== 1:
             deeptech_variable = 'deeptech'
         else:
             deeptech_variable = 'not deeptech'
 
-        st.write(f"The company is **{deeptech_variable}**")
-        st.write(f"The deeptech probability is {round(float(a['prediction_proba'])*100)}% *(above 50% you can consider the company deeptech)*")
+        st.write(f"The company is **{deeptech_variable}** with a probability of {round(float(a['prediction_proba'])*100)}% *(above 50%, it is deeptech)*.")
         y_lab = float(a['lab_predict'])*100
         y_time = float(a['time_predict'])*100
 
-        st.write(f'This probability is explained by these three deeptech criteria, the closer to 100, the more deeptech the startup !')
+        st.write(f"This probability is explained by 3 deeptech criteria ranked from 0 to 100:")
         st.plotly_chart(get_fig(y_lab, y_time))
 
 
         selected_data_info = {'description': a['description'],
                                 'tags' : a['tags']}
 
-
+        st.title(f'Company details.')
         create_info_table(selected_data_info)
 
 
