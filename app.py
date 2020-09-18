@@ -47,7 +47,9 @@ if add_selectbox == 'Predict':
         st.image(a['image'], width = 100)
         y_lab = float(a['lab_predict'])
         y_time = float(a['time_predict'])
-        st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
+        # st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
+
+        st.plotly_chart(get_fig(y_lab, y_time))
 
 
 elif add_selectbox == 'Search':
