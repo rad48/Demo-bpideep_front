@@ -37,9 +37,6 @@ def write():
         st.image('https://i.imgflip.com/4fexmq.jpg', width = 900)
 
     elif company:
-        # url = 'https://deeptechpredict.herokuapp.com/predict'
-
-
         a = get_data(company)
 
         #print company name and logo
@@ -71,8 +68,8 @@ def write():
 
 @st.cache
 def get_data(company):
-        url = 'http://127.0.0.1:8080/predict'
-        # url = 'https://deeptechpredict.herokuapp.com/search'
+        # url = 'http://127.0.0.1:8080/predict'
+        url = 'https://deeptechpredict.herokuapp.com/predict'
 
         params = {
             'name' : company

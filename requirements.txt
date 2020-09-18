@@ -1,7 +1,6 @@
 streamlit
 requests
 gunicorn==20.0.4
-json
 requests
 pandas
 awesome_streamlit
