@@ -1,74 +1,38 @@
-
-import json
-import requests
 import streamlit as st
-import pandas as pd
 
-# to launch front server:
-# streamlit run app.py
-#imports for dataviz
-import os
-import glob
-import time
-import multiprocessing
-import numpy as np
-import pandas as pd
-from gauge import *
+import awesome_streamlit as ast
+import pages.search
+import pages.performers
+import pages.home
 
-# if st.button('Search company'):
-add_selectbox = st.sidebar.selectbox(
-    'Choose',
-    ('Predict', 'Search')
-)
+ast.core.services.other.set_logging_format()
 
-if add_selectbox == 'Predict':
-    company = st.text_input('Enter the name of a company')
-
-    if company:
-        url = 'https://deeptechpredict.herokuapp.com/predict'
-        # url = 'http://127.0.0.1:8080/predict'
-
-        params = {
-            'name' : company
-        }
-
-        response = requests.get(url, params)
-
-        resp = response.content
-
-        a = json.loads(resp)
-
-        if a['prediction']== 1:
-            deeptech_variable = 'deeptech'
-        else:
-            deeptech_variable = 'not deeptech'
-        st.write(f"The company is {deeptech_variable}")
-        st.write(f"The deeptech probability is {round(float(a['prediction_proba'])*100)}% (above 50% you can consider the company deeptech)")
-        st.image(a['image'], width = 100)
-        y_lab = float(a['lab_predict'])
-        y_time = float(a['time_predict'])
-        # st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
-
-        st.plotly_chart(get_fig(y_lab, y_time))
+PAGES = {
+    "Home": pages.home,
+    "Search company": pages.search,
+    "Top performers": pages.performers,
+}
 
 
-elif add_selectbox == 'Search':
-    year = st.text_input('Year')
-    month = st.text_input('Month')
+def main():
+    """Main function of the App"""
+    st.sidebar.title("Navigation")
+    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
-    if year and month:
-        url = 'https://deeptechpredict.herokuapp.com/search'
-        # url = 'http://127.0.0.1:8080/search'
-        params = {
-            'year' : year,
-            'month': month
-        }
+    page = PAGES[selection]
 
-        response = requests.get(url, params)
+    with st.spinner(f"Loading {selection} ..."):
+        ast.shared.components.write_page(page)
 
-        resp = response.content
+    st.sidebar.title("About")
+    st.sidebar.info(
+        """
+        This app was developped by Antoine Planchon, Nicolas Rousselet, Nicolas Tournaud and Alexandre Huet.\n
+        This two-weeks project concludes a Data Science Bootcamp at Le Wagon.\n
+        Special thanks to BPI France for the ressources and great advices, and to the wonderful team of Le Wagon.
+    """
+    )
 
-        a = json.loads(resp)
 
-        df = pd.DataFrame.from_dict(a)
-        st.dataframe(df)
+if __name__ == "__main__":
+    main()
