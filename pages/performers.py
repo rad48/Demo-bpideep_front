@@ -3,7 +3,7 @@ import requests
 import streamlit as st
 import pandas as pd
 
-import awesome_streamlit as ast
+# import awesome_streamlit as ast
 
 months_dic = { 'January': 'jan',
             'February': 'feb',
