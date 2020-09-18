@@ -30,7 +30,7 @@ def write():
     # month = st.sidebar.text_input('Month','May').capitalize()
 
     if year and month in months_dic.keys():
-        # url = 'https://deeptechpredict.herokuapp.com/search'
+        url = 'https://deeptechpredict.herokuapp.com/search'
         st.title(f"Top foundings of {month} {year}")
         st.markdown("""This app exctract french start-ups with the 10 highest founding rounds of a specified month and year.
                      It then predicts their probability of being classified as a Deeptech.""")

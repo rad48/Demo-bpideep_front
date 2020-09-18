@@ -2,8 +2,8 @@ import json
 import requests
 import streamlit as st
 import pandas as pd
-
 import awesome_streamlit as ast
+from gauge import *
 
 def create_info_table(selected_data_info):
     info_table = pd.DataFrame()
@@ -46,11 +46,20 @@ def write():
 
         create_info_table(selected_data_info)
 
+        # st.write(a)
 
-        st.write(f"Deeptech prediction : {a['prediction']}")
-        st.write(f"Predict probability : {a['prediction_proba']}")
-        st.write(a['time_predict'])
-        st.write(a['lab_predict'])
+        if int(a['prediction'])== 1:
+            deeptech_variable = 'deeptech'
+        else:
+            deeptech_variable = 'not deeptech'
+
+        st.write(f"The company is **{deeptech_variable}**")
+        st.write(f"The deeptech probability is {round(float(a['prediction_proba'])*100)}% *(above 50% you can consider the company deeptech)*")
+        y_lab = float(a['lab_predict'])*100
+        y_time = float(a['time_predict'])*100
+        # st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
+
+        st.plotly_chart(get_fig(y_lab, y_time))
 
 
 
