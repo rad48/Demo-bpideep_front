@@ -75,10 +75,10 @@ def get_fig(y_lab, y_time):
         gauge = {
             'shape': "bullet",
             'axis': {'range': [None, 100]},
-            'threshold': {
-                'line': {'color': "black", 'width': 2},
-                'thickness': 0.5,
-                'value': THRESHOLD_TECHNO},
+            # 'threshold': {
+            #     'line': {'color': "black", 'width': 2},
+            #     'thickness': 0.5,
+            #     'value': THRESHOLD_TECHNO},
             'steps': [
                 {'range': [0, MEAN_NON_DT_TECHNO], 'color': 'rgba(220,20,60,0.2)'},
                 {'range': [MEAN_NON_DT_TECHNO, MEAN_DT_TECHNO], 'color': 'rgba(255,127,80,0.2)'}],
@@ -92,10 +92,10 @@ def get_fig(y_lab, y_time):
         gauge = {
             'shape': "bullet",
             'axis': {'range': [None, 100]},
-            'threshold': {
-                'line': {'color': "black", 'width': 2},
-                'thickness': 0.5,
-                'value': THRESHOLD_TIME},
+            # 'threshold': {
+            #     'line': {'color': "black", 'width': 2},
+            #     'thickness': 0.5,
+            #     'value': THRESHOLD_TIME},
             'steps': [
                 {'range': [0, MEAN_NON_DT_TIME], 'color': 'rgba(220,20,60,0.2)'},
                 {'range': [MEAN_NON_DT_TIME, MEAN_DT_TIME], 'color': 'rgba(255,127,80,0.2)'}],
@@ -109,10 +109,10 @@ def get_fig(y_lab, y_time):
         gauge = {
             'shape': "bullet",
             'axis': {'range': [None, 100]},
-            'threshold': {
-                'line': {'color': "black", 'width': 2},
-                'thickness': 0.5,
-                'value': THRESHOLD_LAB},
+            # 'threshold': {
+            #     'line': {'color': "black", 'width': 2},
+            #     'thickness': 0.5,
+            #     'value': THRESHOLD_LAB},
             'steps': [
                 {'range': [0, MEAN_NON_DT_LAB], 'color': 'rgba(220,20,60,0.2)'},
                 {'range': [MEAN_NON_DT_LAB, MEAN_DT_LAB], 'color': 'rgba(255,127,80,0.2)'}],
