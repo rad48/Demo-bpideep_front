@@ -3,5 +3,5 @@ requests
 gunicorn==20.0.4
 requests
 pandas
-awesome_streamlit
+awesome-streamlit==20200728.1
 jinja2
