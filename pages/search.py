@@ -37,14 +37,13 @@ def write():
         a = get_data(company)
 
         #print company name and logo
+        # st.title(company.capitalize())
         st.title(company.capitalize())
         st.image(a['image'], width = 100)
+        st.write(f'The company found is located in {company.}')
 
         #print a table with description and tags
-        selected_data_info = {'description': a['description'],
-                                'tags' : a['tags']}
 
-        create_info_table(selected_data_info)
 
         # st.write(a)
 
@@ -57,10 +56,16 @@ def write():
         st.write(f"The deeptech probability is {round(float(a['prediction_proba'])*100)}% *(above 50% you can consider the company deeptech)*")
         y_lab = float(a['lab_predict'])*100
         y_time = float(a['time_predict'])*100
-        # st.plotly_chart(get_fig(y_lab, y_time), filename='Deeptech decrypted')
 
+        st.write(f'This probability is explained by these three deeptech criteria, the closer to 100, the more deeptech the startup !')
         st.plotly_chart(get_fig(y_lab, y_time))
 
+
+        selected_data_info = {'description': a['description'],
+                                'tags' : a['tags']}
+
+
+        create_info_table(selected_data_info)
 
 
 @st.cache
