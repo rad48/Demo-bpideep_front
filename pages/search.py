@@ -28,23 +28,17 @@ def create_info_table(selected_data_info):
 
 def write():
     st.sidebar.title("Input company's name :")
-    company = st.sidebar.text_input('Company','Afyren')
+    company = st.sidebar.text_input('Company','Devialet')
 
     if company:
         # url = 'https://deeptechpredict.herokuapp.com/predict'
-        url = 'http://127.0.0.1:8080/predict'
 
-        params = {
-            'name' : company
-        }
 
-        response = requests.get(url, params)
-        resp = response.content
-        a = json.loads(resp)
+        a = get_data(company)
 
         #print company name and logo
         st.title(company.capitalize())
-        st.image(a['image'], width = 150)
+        st.image(a['image'], width = 100)
 
         #print a table with description and tags
         selected_data_info = {'description': a['description'],
@@ -60,4 +54,17 @@ def write():
 
 
 
+@st.cache
+def get_data(company):
+        url = 'http://127.0.0.1:8080/predict'
+        # url = 'https://deeptechpredict.herokuapp.com/search'
 
+        params = {
+            'name' : company
+        }
+
+        response = requests.get(url, params)
+        resp = response.content
+        a = json.loads(resp)
+
+        return a
