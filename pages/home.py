@@ -11,8 +11,8 @@ def write():
         st.write(
             """
     This application provides
-    - A **predict** tool to predict the likehood for a start-up of being classified as Deeptech.
-    - A **reporting** tool that exract start-up with the highest founding rounds of a specified.
+    - A **prediction** tool to predict the likehood for a start-up to be classified as Deeptech.
+    - A **reporting** tool that extracts start-ups with the highest funding rounds for a given month.
         """
             )
     st.write('## What is a Deeptech ?')

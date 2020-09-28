@@ -3,36 +3,27 @@ import requests
 import streamlit as st
 import pandas as pd
 
-# import awesome_streamlit as ast
-
-months_dic = { 'January': 'jan',
-            'February': 'feb',
-            'March': 'mar',
-            'April':'apr',
-            'May':'may',
-            'June':'jun',
-            'July':'jul',
-            'August':'aug',
-            'September':'sep',
-            'October':'oct',
-            'November':'nov',
-            'December':'dec'}
+months_dic = {
+            'May':'MAY',
+            'September':'SEP'}
 
 def write():
-    st.sidebar.title("Input Date :")
+    st.sidebar.title("Input Date:")
 
     month = st.sidebar.selectbox(
         "Select month",
         options=list(months_dic.keys()),
 
     )
-    year = st.sidebar.text_input('Enter Year')
-    # month = st.sidebar.text_input('Month','May').capitalize()
+    year = st.sidebar.selectbox(
+        "Select year",
+        options = [2019, 2020])
+
 
     if year and month in months_dic.keys():
         url = 'https://deeptechpredict.herokuapp.com/search'
-        st.title(f"Top foundings of {month} {year}")
-        st.markdown("""This app exctract french start-ups with the 10 highest founding rounds of a specified month and year.
+        st.title(f"Top fundings of {month} {year}")
+        st.markdown("""This app exctracts French start-ups with the 10 highest founding rounds of a specified month and year.
                      It then predicts their probability of being classified as a Deeptech.""")
 
         a = get_data(year, months_dic[month])
@@ -41,7 +32,7 @@ def write():
         dict_df = {'Company' : a['name'], 'Last funding (million €)': a['amount'], 'Deeptech': a['prediction']}
 
         def highlight_1(s):
-            if s.Deeptech == str(1):
+            if s.Deeptech == 1:
                 return ['color: white;background-color: green;font-weight: bold']*3
             else:
                 return ['background-color: white']*3

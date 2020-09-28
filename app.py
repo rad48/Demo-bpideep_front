@@ -1,11 +1,7 @@
 import streamlit as st
-
-# import awesome_streamlit as ast
 import pages.search
 import pages.performers
 import pages.home
-
-# ast.core.services.other.set_logging_format()
 
 PAGES = {
     "Home": pages.home,
@@ -22,14 +18,17 @@ def main():
     page = PAGES[selection]
 
     with st.spinner(f"Loading {selection} ..."):
-        ast.shared.components.write_page(page)
+        page.write()
 
-    st.sidebar.title("About")
+    st.sidebar.title("About this demo")
     st.sidebar.info(
         """
-        This app was developped by Antoine Planchon, Nicolas Rousselet, Nicolas Tournaud and Alexandre Huet.\n
-        This two-weeks project concludes a Data Science Bootcamp at Le Wagon.\n
-        Special thanks to BPI France for the ressources and great advices, and to the wonderful team of Le Wagon.
+        This app is a demo version that was developped by [Antoine Planchon](https://www.linkedin.com/in/antoine-planchon-295503118/), \
+        [Nicolas Rousselet](https://www.linkedin.com/in/nicolas-rousselet-188158b0/), \
+        [Nicolas Tournaud](https://www.linkedin.com/in/nicolastournaud/) and \
+        [Alexandre Huet](https://www.linkedin.com/in/alexandre-huet-5a0563127/).\n
+        This 10-days project concludes a Data Science Bootcamp at Le Wagon.\n
+        Special thanks to BPI France for the resources and great advices, and to the wonderful team of teachers and TAs at Le Wagon.
     """
     )
 
