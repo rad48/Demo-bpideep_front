@@ -4,5 +4,3 @@ gunicorn==20.0.4
 requests
 pandas
 jinja2
-plotly.figure_factory
-chart_studio

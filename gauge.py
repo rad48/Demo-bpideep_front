@@ -1,11 +1,6 @@
-import chart_studio.plotly as py
-import plotly.figure_factory as ff
 import pandas as pd
-import chart_studio
 import streamlit as st
 import plotly.express as px
-# chart_studio.tools.set_credentials_file(username='NicolasNicolasNicolas', api_key='lr1c37zw81')
-
 
 
 ## LABORATORY AND TIME MEAN VALUES FROM PREDICT MODELS
@@ -31,26 +26,6 @@ def colorized_time(x):
     elif x < MEAN_DT_TIME: return 'rgba(255,127,80,1)'
     else: return 'rgba(154,205,50,1)'
 
-
-# # Get json ready
-# def get_fig(y_lab, y_time):
-#     json_input = [
-#           {"title":"Lab intensity","subtitle": "Lorem ipsum", "ranges":[0, 100],"measures":[MEAN_NON_DT_LAB,MEAN_DT_LAB, 100],"markers":[y_lab]},
-#           {"title":"Time to market","subtitle": "Lorem ipsum","ranges":[0, 100],"measures":[MEAN_NON_DT_TIME, MEAN_DT_TIME, 100],"markers":[y_time]}
-#         ]
-#     data = pd.DataFrame(json_input)
-#     return ff.create_bullet(
-#                 data,
-#                 markers='markers',
-#                 measures='measures',
-#                 ranges='ranges',
-#                 subtitles='subtitle',
-#                 titles='title',
-#                 range_colors=range_colors,
-#                 measure_colors=measure_colors
-#                 )
-
-# SECOND ATTEMPT
 
 import plotly.graph_objects as go
 def get_fig(y_lab, y_time):
