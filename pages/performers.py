@@ -21,7 +21,6 @@ def write():
 
 
     if year and month in months_dic.keys():
-        url = 'https://deeptechpredict.herokuapp.com/search'
         st.title(f"Top fundings of {month} {year}")
         st.markdown("""This app exctracts French start-ups with the 10 highest founding rounds of a specified month and year.
                      It then predicts their probability of being classified as a Deeptech.""")
@@ -47,8 +46,7 @@ def write():
 
 @st.cache
 def get_data(year, month):
-        url = 'http://127.0.0.1:8080/search'
-        # url = 'https://deeptechpredict.herokuapp.com/search'
+        url = 'https://bpideeptechapi.herokuapp.com/search'
 
         params = {
             'year' : year,
